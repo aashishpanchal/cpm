@@ -16,8 +16,10 @@ class ExecutionTime(object):
     def _time_color(self):
         return colorize(self.get_execution_time(), "green")
     
-    def timeformat(self, total_time):
-        return colorize("%0.3fms" % total_time, fg="green", opts=("underscore",))
+    def timeformat(self, total_time):\
+        if int(total_time) == 0:
+            return colorize("%0.3fms" % total_time, fg="green", opts=("underscore",))
+        return colorize("%0.3fs" % total_time, fg="green", opts=("underscore",))
     
     def get_execution_time(self):
         return self.timeformat(self.end_time - self.start_time)

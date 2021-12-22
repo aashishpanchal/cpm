@@ -69,7 +69,7 @@ class Command(BaseCommand):
                         "[ %s ] --- %s" % (style_success("build"), style_warning(app["name"])), ending="")
                     lib_files += "".join(self._optimize_code_genrate(
                         current_dir, source_files)) + " "
-            self.stdout.write("comebine complie %s" % style_cpm(cpp_file_name))
+            self.stdout.write("combine compile %s" % style_cpm(cpp_file_name))
             self.run_now(cpp_file_name, lib_files, cpm_json.get('command'), new_terminal)
         else:
             self.run_now(cpp_file_name, "", "", new_terminal)
@@ -80,13 +80,13 @@ class Command(BaseCommand):
 
         exe_name = cpp_file_name.rpartition(".")[0] + ".exe"
         self.executionTime_class.start()
-        cpp_complie_command = f"g++ -o {exe_name} {cpp_file_name} {lib_files} {commands}"
-        complie_error = os.system(cpp_complie_command)
+        cpp_compile_command = f"g++ -o {exe_name} {cpp_file_name} {lib_files} {commands}"
+        compile_error = os.system(cpp_compile_command)
         self.executionTime_class.end()
-        if complie_error != 0:
-            raise CompileError(f"Error in compiling file {style_warning(cpp_file_name)}:\n{style_error(cpp_complie_command)}")
+        if compile_error != 0:
+            raise CompileError(f"Error in compiling file {style_warning(cpp_file_name)}:\n{style_error(cpp_compile_command)}")
         else:
-            self.stdout.write("complie successfully.", style_success,
+            self.stdout.write("compile successfully.", style_success,
                               ending=f" {self.executionTime_class.get_execution_time()}\n")
             if new_terminal:
                 self.stdout.write("opening new terminal", style_warning)
