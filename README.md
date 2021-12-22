@@ -14,7 +14,7 @@ Python interpreter and Mingw g++/gcc complier
 Install cpm with pip
 
 ```bash
-  pip install cpm
+  pip install cpp-project-manager-cli
 ```
 ## create c++ project with CPM
 ```bash
